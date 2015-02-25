@@ -1,0 +1,39 @@
+{
+  "name": "assign-deep",
+  "description": "Deeply assign the enumerable properties of source objects to a destination object. If a callback is passed it will be invoked to to assign the values.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/jonschlinkert/assign-deep",
+  "author": {
+    "name": "Jon Schlinkert",
+    "url": "https://github.com/jonschlinkert"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jonschlinkert/assign-deep.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/assign-deep/issues"
+  },
+  "license": {
+    "type": "MIT",
+    "url": "https://github.com/jonschlinkert/assign-deep/blob/master/LICENSE"
+  },
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "is-plain-object": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "keywords": []
+}
