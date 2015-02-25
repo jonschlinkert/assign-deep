@@ -1,6 +1,6 @@
 # assign-deep [![NPM version](https://badge.fury.io/js/assign-deep.svg)](http://badge.fury.io/js/assign-deep)  [![Build Status](https://travis-ci.org/jonschlinkert/assign-deep.svg)](https://travis-ci.org/jonschlinkert/assign-deep) 
 
-> Deeply assign the enumerable properties of source objects to a destination object. If a callback is passed it will be invoked to to assign the values.
+> Deeply assign the enumerable properties of source objects to a destination object.
 
 ## Install with [npm](npmjs.org)
 
