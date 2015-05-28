@@ -1,23 +1,14 @@
 {
   "name": "assign-deep",
   "description": "Deeply assign the enumerable properties of source objects to a destination object.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/assign-deep",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/assign-deep.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/assign-deep",
   "bugs": {
     "url": "https://github.com/jonschlinkert/assign-deep/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jonschlinkert/assign-deep/blob/master/LICENSE"
-  },
+  "license": "MIT",
   "files": [
     "index.js"
   ],
@@ -28,12 +19,25 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {
-    "is-plain-object": "^1.0.0"
-  },
   "devDependencies": {
     "mocha": "*",
     "should": "*"
   },
-  "keywords": []
+  "keywords": [
+    "assign",
+    "copy",
+    "deep",
+    "extend",
+    "key",
+    "keys",
+    "merge",
+    "mixin",
+    "object",
+    "prop",
+    "properties",
+    "values"
+  ],
+  "dependencies": {
+    "is-plain-object": "^2.0.0"
+  }
 }
