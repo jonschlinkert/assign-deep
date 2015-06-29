@@ -7,38 +7,55 @@
 
 'use strict';
 
-var isObject = require('is-plain-object');
+var isObject = require('is-extendable');
+var typeOf = require('kind-of');
+
+function assign(o/*, objects*/) {
+  if (!isObject(o)) { o = {}; }
+
+  var len = arguments.length;
+  for (var i = 1; i < len; i++) {
+    extend(o, arguments[i]);
+  }
+  return o;
+}
+
+/**
+ * Shallow extend
+ */
+
+function extend(target, obj) {
+  if (!isObject(obj)) {
+    return target;
+  }
+
+  if (isObject(obj)) {
+    for (var key in obj) {
+      if (hasOwn(obj, key)) {
+        var val = obj[key];
+
+        // `val` an object with keys?
+        if (typeOf(val) === 'object') {
+          target[key] = extend(target[key] || {}, val);
+        } else {
+          target[key] = val;
+        }
+      }
+    }
+  }
+  return target;
+}
+
+/**
+ * Returns true if the given `key` is an own property of `obj`.
+ */
+
+function hasOwn(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
 
 /**
  * Expose `assign`
  */
 
 module.exports = assign;
-
-function assign(o, objects) {
-  if (!isObject(o)) return {};
-  if (!isObject(objects)) return o;
-
-  var len = arguments.length - 1;
-  for (var i = 0; i < len; i++) {
-    var obj = arguments[i + 1];
-    if (isObject(obj)) {
-      extend(o, obj);
-    }
-  }
-  return o;
-}
-
-function extend(o, obj) {
-  for (var key in obj) {
-    if (obj.hasOwnProperty(key)) {
-      var val = obj[key];
-      if (isObject(val)) {
-        assign(o[key], val);
-      } else {
-        o[key] = val;
-      }
-    }
-  }
-  return o;
-}
