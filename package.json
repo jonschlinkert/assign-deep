@@ -1,7 +1,7 @@
 {
   "name": "assign-deep",
   "description": "Deeply assign the enumerable properties of source objects to a destination object.",
-  "version": "0.1.2",
+  "version": "0.3.0",
   "homepage": "https://github.com/jonschlinkert/assign-deep",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/assign-deep",
@@ -18,6 +18,10 @@
   },
   "scripts": {
     "test": "mocha"
+  },
+  "dependencies": {
+    "is-extendable": "^0.1.0",
+    "kind-of": "^2.0.0"
   },
   "devDependencies": {
     "mocha": "*",
@@ -36,8 +40,5 @@
     "prop",
     "properties",
     "values"
-  ],
-  "dependencies": {
-    "is-plain-object": "^2.0.0"
-  }
+  ]
 }
