@@ -11,8 +11,9 @@
     "index.js"
   ],
   "dependencies": {
-    "is-extendable": "^0.1.0",
-    "kind-of": "^2.0.0"
+    "is-extendable": "^0.1.1",
+    "kind-of": "^2.0.0",
+    "lazy-cache": "^0.2.2"
   },
   "devDependencies": {
     "mocha": "*",
