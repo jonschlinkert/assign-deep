@@ -7,17 +7,22 @@
 
 'use strict';
 
-var isObject = require('is-extendable');
-var typeOf = require('kind-of');
+var lazy = require('lazy-cache')(require);
+// lazily require dependencies (with aliases)
+lazy('is-extendable', 'isObject');
+lazy('kind-of', 'typeOf');
 
-function assign(o/*, objects*/) {
-  if (!isObject(o)) { o = {}; }
+function assign(target, objects) {
+  target = target || {};
 
   var len = arguments.length;
   for (var i = 1; i < len; i++) {
-    extend(o, arguments[i]);
+    var val = arguments[i];
+    if (lazy.isObject(val)) {
+      extend(target, val);
+    }
   }
-  return o;
+  return target;
 }
 
 /**
@@ -25,21 +30,13 @@ function assign(o/*, objects*/) {
  */
 
 function extend(target, obj) {
-  if (!isObject(obj)) {
-    return target;
-  }
-
-  if (isObject(obj)) {
-    for (var key in obj) {
-      if (hasOwn(obj, key)) {
-        var val = obj[key];
-
-        // `val` an object with keys?
-        if (typeOf(val) === 'object') {
-          target[key] = extend(target[key] || {}, val);
-        } else {
-          target[key] = val;
-        }
+  for (var key in obj) {
+    if (hasOwn(obj, key)) {
+      var val = obj[key];
+      if (lazy.typeOf(val) === 'object') {
+        target[key] = extend(target[key] || {}, val);
+      } else {
+        target[key] = val;
       }
     }
   }
