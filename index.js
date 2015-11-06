@@ -34,11 +34,9 @@ function extend(target, obj) {
 
   for (var key in obj) {
     if (hasOwn(obj, key)) {
-      var val = obj[key];
+    var val = obj[key];
       if (isObject(val)) {
-        target[key] = target[key] || {};
-        assignSymbols(target[key], val);
-        extend(target[key], val);
+        target[key] = assign(target[key] || {}, val);
       } else {
         target[key] = val;
       }

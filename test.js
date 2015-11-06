@@ -19,6 +19,44 @@ describe('assign', function() {
     assert.deepEqual(target.b, {c: {d: 'e', f: 'g', j: 'i'}});
   });
 
+  it('should extend deeply nested functions:', function() {
+    var fn = function() {};
+    var target = {};
+    var one = {b: {c: {d: fn}}};
+    var two = {b: {c: {f: 'g', j: 'i'}}};
+    assign(target, one, two);
+    assert.deepEqual(target.b, {c: {d: fn, f: 'g', j: 'i'}});
+  });
+
+  it('should extend deeply nested functions with properties:', function() {
+    var fn = function() {};
+    fn.foo = 'foo';
+    fn.bar = 'bar';
+
+    var target = {};
+    var one = {b: {c: {d: fn}}};
+    var two = {b: {c: {f: 'g', j: 'i'}}};
+    assign(target, one, two);
+    assert.deepEqual(target.b, {c: {d: fn, f: 'g', j: 'i'}});
+  });
+
+  it('should extend deeply nested functions with nested properties:', function() {
+    var fn = function() {};
+    fn.foo = {y: 'y'};
+    fn.bar = {z: 'z'};
+
+    var target = {};
+    var one = {a: {fn: fn}};
+    var two = {b: {fn: fn}};
+    two.b.fn.foo.w = 'w';
+    two.b.fn.bar.x = 'x';
+
+    assert.deepEqual(assign(target, one, two).a.fn, {
+      foo: {y: 'y', w: 'w' },
+      bar: { z: 'z', x: 'x' }
+    });
+  });
+
   it('should extend properties from functions to functions:', function() {
     function target() {}
     function one() {}
@@ -223,6 +261,18 @@ describe('symbols', function() {
       b[key] = 'xyz';
       assign(a, b);
       assert.equal(a[key], 'xyz');
+    });
+
+    it('should deeply assign symbol properties', function() {
+      var a = {c: {e: {f: {}}}};
+      var b = {c: {e: {g: {}}}};
+      var foo = Symbol('foo');
+      var bar = Symbol('bar');
+      a.c.e.f[foo] = 'xyz';
+      b.c.e.g[bar] = 'xyz';
+      assign(a, b);
+      assert.equal(a.c.e.f[foo], 'xyz');
+      assert.equal(a.c.e.g[bar], 'xyz');
     });
 
     it('should assign symbol properties from each object to the receiver', function() {
