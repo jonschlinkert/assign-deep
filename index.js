@@ -7,18 +7,18 @@
 
 'use strict';
 
-var lazy = require('lazy-cache')(require);
-// lazily require dependencies (with aliases)
-lazy('is-extendable', 'isObject');
-lazy('kind-of', 'typeOf');
+var assignSymbols = require('assign-symbols');
+var typeOf = require('kind-of');
 
-function assign(target, objects) {
+function assign(target/*, objects*/) {
   target = target || {};
-
-  var len = arguments.length;
-  for (var i = 1; i < len; i++) {
+  var len = arguments.length, i = 0;
+  if (len === 1) {
+    return target;
+  }
+  while (++i < len) {
     var val = arguments[i];
-    if (lazy.isObject(val)) {
+    if (isObject(val)) {
       extend(target, val);
     }
   }
@@ -30,17 +30,29 @@ function assign(target, objects) {
  */
 
 function extend(target, obj) {
+  assignSymbols(target, obj);
+
   for (var key in obj) {
     if (hasOwn(obj, key)) {
       var val = obj[key];
-      if (lazy.typeOf(val) === 'object') {
-        target[key] = extend(target[key] || {}, val);
+      if (isObject(val)) {
+        target[key] = target[key] || {};
+        assignSymbols(target[key], val);
+        extend(target[key], val);
       } else {
         target[key] = val;
       }
     }
   }
   return target;
+}
+
+/**
+ * Returns true if the object is a plain object or a function.
+ */
+
+function isObject(obj) {
+  return typeOf(obj) === 'object' || typeOf(obj) === 'function';
 }
 
 /**
