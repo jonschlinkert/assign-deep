@@ -1,6 +1,6 @@
 {
   "name": "assign-deep",
-  "description": "Deeply assign the enumerable properties of source objects to a destination object.",
+  "description": "Deeply assign the enumerable properties and/or es6 Symbol properies of source objects to the target (first) object.",
   "repository": "jonschlinkert/assign-deep",
   "license": "MIT",
   "homepage": "https://github.com/jonschlinkert/assign-deep",
@@ -11,13 +11,11 @@
     "index.js"
   ],
   "dependencies": {
-    "is-extendable": "^0.1.1",
-    "kind-of": "^2.0.0",
-    "lazy-cache": "^0.2.2"
+    "assign-symbols": "^0.1.1",
+    "kind-of": "^2.0.1"
   },
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "mocha": "*"
   },
   "keywords": [
     "assign",
