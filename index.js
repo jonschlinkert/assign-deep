@@ -36,6 +36,9 @@ function extend(target, obj) {
     if (hasOwn(obj, key)) {
     var val = obj[key];
       if (isObject(val)) {
+        if (typeOf(target[key]) === 'undefined' && typeOf(val) === 'function') {
+          target[key] = val;
+        }
         target[key] = assign(target[key] || {}, val);
       } else {
         target[key] = val;
