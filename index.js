@@ -16,6 +16,9 @@ function assign(target/*, objects*/) {
   if (len === 1) {
     return target;
   }
+  if (!isObject(target)) {
+    return target;
+  }
   while (++i < len) {
     var val = arguments[i];
     if (isObject(val)) {
@@ -34,7 +37,7 @@ function extend(target, obj) {
 
   for (var key in obj) {
     if (hasOwn(obj, key)) {
-    var val = obj[key];
+      var val = obj[key];
       if (isObject(val)) {
         if (typeOf(target[key]) === 'undefined' && typeOf(val) === 'function') {
           target[key] = val;
