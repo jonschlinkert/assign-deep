@@ -41,21 +41,24 @@ describe('assign', function() {
   });
 
   it('should extend deeply nested functions with nested properties:', function() {
-    var fn = function() {};
-    fn.foo = {y: 'y'};
-    fn.bar = {z: 'z'};
+    var fnOne = function() {};
+    fnOne.foo = {y: 'y'};
+    fnOne.bar = {z: 'z'};
+
+    var fnTwo = function() {};
+    fnTwo.foo = {w: 'w'};
+    fnTwo.bar = {x: 'x'};
 
     var target = {};
-    var one = {a: {fn: fn}};
-    var two = {b: {fn: fn}};
-    two.b.fn.foo.w = 'w';
-    two.b.fn.bar.x = 'x';
+    var one = {a: {fn: fnOne}};
+    var two = {a: {fn: fnTwo}};
 
     assert.deepEqual(assign(target, one, two).a.fn, {
       foo: {y: 'y', w: 'w' },
       bar: { z: 'z', x: 'x' }
     });
   });
+
 
   it('should extend properties from functions to functions:', function() {
     function target() {}
