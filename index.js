@@ -18,6 +18,9 @@ function assign(target/*, objects*/) {
   }
   while (++i < len) {
     var val = arguments[i];
+    if (isPrimitive(target)) {
+      target = val;
+    }
     if (isObject(val)) {
       extend(target, val);
     }
@@ -34,7 +37,7 @@ function extend(target, obj) {
 
   for (var key in obj) {
     if (hasOwn(obj, key)) {
-    var val = obj[key];
+      var val = obj[key];
       if (isObject(val)) {
         if (typeOf(target[key]) === 'undefined' && typeOf(val) === 'function') {
           target[key] = val;
@@ -54,6 +57,14 @@ function extend(target, obj) {
 
 function isObject(obj) {
   return typeOf(obj) === 'object' || typeOf(obj) === 'function';
+}
+
+/**
+ * Returns true if the val is a primitive (e.g. not a plain object, function or array)
+ */
+
+function isPrimitive(val) {
+  return !isObject(val) && !Array.isArray(val);
 }
 
 /**

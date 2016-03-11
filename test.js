@@ -101,6 +101,14 @@ describe('assign', function() {
     assert.deepEqual(assign(one, two), {b: 5});
   });
 
+  it('should assign over primitive values:', function() {
+    var one = {b: {c: {d: 'e', g: ['b']}}};
+    var two = {b: 5};
+    var three = {b: function() {}};
+    three.b.foo = 'bar';
+    assert.deepEqual(assign(one, two, three), three);
+  });
+
   it('should assign null values:', function() {
     var one = {b: {c: {d: 'e', g: ['b']}}};
     var two = {b: null, c: null};
