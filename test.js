@@ -101,11 +101,12 @@ describe('assign', function() {
     assert.deepEqual(assign(one, two), {b: 5});
   });
 
-  it('should not overrite primitive values:', function() {
+  it('should assign over primitive values:', function() {
     var one = {b: {c: {d: 'e', g: ['b']}}};
     var two = {b: 5};
-    var three = {b: {c: {d: 'e', g: ['b']}}};
-    assert.deepEqual(assign(one, two, three), {b: 5});
+    var three = {b: function() {}};
+    three.b.foo = 'bar';
+    assert.deepEqual(assign(one, two, three), three);
   });
 
   it('should assign null values:', function() {
