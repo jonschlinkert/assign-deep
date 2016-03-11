@@ -24,6 +24,7 @@
     "kind-of": "^2.0.1"
   },
   "devDependencies": {
+    "gulp-format-md": "^0.1.7",
     "mocha": "*"
   },
   "keywords": [
@@ -41,6 +42,13 @@
     "values"
   ],
   "verb": {
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
     "related": {
       "list": [
         "extend-shallow",
@@ -48,6 +56,12 @@
         "merge-deep",
         "mixin-deep"
       ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
     }
   }
 }
