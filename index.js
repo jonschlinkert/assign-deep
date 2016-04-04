@@ -7,6 +7,7 @@
 
 'use strict';
 
+var isPrimitive = require('is-primitive');
 var assignSymbols = require('assign-symbols');
 var typeOf = require('kind-of');
 
@@ -57,14 +58,6 @@ function extend(target, obj) {
 
 function isObject(obj) {
   return typeOf(obj) === 'object' || typeOf(obj) === 'function';
-}
-
-/**
- * Returns true if the val is a primitive (e.g. not a plain object, function or array)
- */
-
-function isPrimitive(val) {
-  return !isObject(val) && !Array.isArray(val);
 }
 
 /**
