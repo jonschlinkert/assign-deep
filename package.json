@@ -21,11 +21,12 @@
   },
   "dependencies": {
     "assign-symbols": "^0.1.1",
-    "kind-of": "^2.0.1"
+    "is-primitive": "^2.0.0",
+    "kind-of": "^3.0.2"
   },
   "devDependencies": {
     "gulp-format-md": "^0.1.7",
-    "mocha": "*"
+    "mocha": "^2.4.5"
   },
   "keywords": [
     "assign",
@@ -42,6 +43,8 @@
     "values"
   ],
   "verb": {
+    "run": true,
+    "toc": false,
     "layout": "default",
     "tasks": [
       "readme"
@@ -51,8 +54,8 @@
     ],
     "related": {
       "list": [
-        "extend-shallow",
         "assign-symbols",
+        "extend-shallow",
         "merge-deep",
         "mixin-deep"
       ]

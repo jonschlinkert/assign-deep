@@ -12,10 +12,12 @@
   ],
   "dependencies": {
     "assign-symbols": "^0.1.1",
-    "kind-of": "^2.0.1"
+    "is-primitive": "^2.0.0",
+    "kind-of": "^3.0.2"
   },
   "devDependencies": {
-    "mocha": "*"
+    "gulp-format-md": "^0.1.7",
+    "mocha": "^2.4.5"
   },
   "keywords": [
     "assign",

@@ -59,7 +59,6 @@ describe('assign', function() {
     });
   });
 
-
   it('should extend properties from functions to functions:', function() {
     function target() {}
     function one() {}
