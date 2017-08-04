@@ -4,6 +4,10 @@
   "version": "0.4.5",
   "homepage": "https://github.com/jonschlinkert/assign-deep",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Brian Woodward (https://twitter.com/doowb)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)"
+  ],
   "repository": "jonschlinkert/assign-deep",
   "bugs": {
     "url": "https://github.com/jonschlinkert/assign-deep/issues"
@@ -22,11 +26,11 @@
   "dependencies": {
     "assign-symbols": "^0.1.1",
     "is-primitive": "^2.0.0",
-    "kind-of": "^3.0.2"
+    "kind-of": "^5.0.2"
   },
   "devDependencies": {
-    "gulp-format-md": "^0.1.7",
-    "mocha": "^2.4.5"
+    "gulp-format-md": "^1.0.0",
+    "mocha": "^3.5.0"
   },
   "keywords": [
     "assign",
@@ -53,6 +57,7 @@
       "gulp-format-md"
     ],
     "related": {
+      "description": "You might also be interested in these projects:",
       "list": [
         "assign-symbols",
         "extend-shallow",
