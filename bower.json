@@ -32,5 +32,22 @@
     "prop",
     "properties",
     "values"
+  ],
+  "version": "0.4.5",
+  "bugs": {
+    "url": "https://github.com/jonschlinkert/assign-deep/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "ignore": [
+    "actual",
+    "bower_components",
+    "fixtures",
+    "node_modules",
+    "temp",
+    "test",
+    "test.js",
+    "tmp"
   ]
 }

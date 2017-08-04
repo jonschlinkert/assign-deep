@@ -1,8 +1,8 @@
 /*!
  * assign-deep <https://github.com/jonschlinkert/assign-deep>
  *
- * Copyright (c) 2015, Jon Schlinkert.
- * Licensed under the MIT License.
+ * Copyright (c) 2017, Jon Schlinkert.
+ * Released under the MIT License.
  */
 
 'use strict';
