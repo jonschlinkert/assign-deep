@@ -1,7 +1,7 @@
 {
   "name": "assign-deep",
   "description": "Deeply assign the enumerable properties and/or es6 Symbol properies of source objects to the target (first) object.",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "homepage": "https://github.com/jonschlinkert/assign-deep",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
