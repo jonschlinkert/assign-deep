@@ -53,10 +53,9 @@ describe('assign', function() {
     var one = {a: {fn: fnOne}};
     var two = {a: {fn: fnTwo}};
 
-    assert.deepEqual(assign(target, one, two).a.fn, {
-      foo: {y: 'y', w: 'w' },
-      bar: { z: 'z', x: 'x' }
-    });
+    var actual = assign(target, one, two).a.fn;
+    assert.deepEqual(actual.foo, {y: 'y', w: 'w' });
+    assert.deepEqual(actual.bar, { z: 'z', x: 'x' });
   });
 
   it('should extend properties from functions to functions:', function() {
