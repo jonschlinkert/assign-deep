@@ -26,7 +26,7 @@
   "dependencies": {
     "assign-symbols": "^0.1.1",
     "is-primitive": "^2.0.0",
-    "kind-of": "^5.0.2"
+    "kind-of": "^6.0.2"
   },
   "devDependencies": {
     "gulp-format-md": "^1.0.0",
