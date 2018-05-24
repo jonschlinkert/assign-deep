@@ -13,8 +13,7 @@ var typeOf = require('kind-of');
 
 function assign(target/*, objects*/) {
   target = target || {};
-  var len = arguments.length,
-    i = 0;
+  var len = arguments.length, i = 0;
   if (len === 1) {
     return target;
   }
@@ -72,6 +71,7 @@ function extend(target, obj) {
 function isObject(obj) {
   return typeOf(obj) === 'object' || typeOf(obj) === 'function';
 }
+
 /**
  * Returns true if the object is an array.
  */
@@ -84,10 +84,7 @@ function isArray(obj) {
  */
 
 function hasOwn(obj, key) {
-  return Object
-    .prototype
-    .hasOwnProperty
-    .call(obj, key);
+  return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
 /**
