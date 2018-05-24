@@ -13,7 +13,8 @@ var typeOf = require('kind-of');
 
 function assign(target/*, objects*/) {
   target = target || {};
-  var len = arguments.length, i = 0;
+  var len = arguments.length,
+    i = 0;
   if (len === 1) {
     return target;
   }
@@ -44,6 +45,18 @@ function extend(target, obj) {
           target[key] = val;
         }
         target[key] = assign(target[key] || {}, val);
+      } else if (isArray(val)) {
+        let array = [];
+        for (let i = 0; i < val.length; i++) {
+          if (isPrimitive(val[i])) {
+            array.push(val[i]);
+          } else {
+            array.push(assign({}, val[i]));
+          }
+        
+        }
+        target[key] = array;
+
       } else {
         target[key] = val;
       }
@@ -59,13 +72,22 @@ function extend(target, obj) {
 function isObject(obj) {
   return typeOf(obj) === 'object' || typeOf(obj) === 'function';
 }
+/**
+ * Returns true if the object is an array.
+ */
+function isArray(obj) {
+  return typeOf(obj) === 'array';
+}
 
 /**
  * Returns true if the given `key` is an own property of `obj`.
  */
 
 function hasOwn(obj, key) {
-  return Object.prototype.hasOwnProperty.call(obj, key);
+  return Object
+    .prototype
+    .hasOwnProperty
+    .call(obj, key);
 }
 
 /**
