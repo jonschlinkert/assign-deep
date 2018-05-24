@@ -19,6 +19,7 @@ function assign(target/*, objects*/) {
   }
   while (++i < len) {
     var val = arguments[i];
+    if (target === val) continue;
     if (isPrimitive(target)) {
       target = val;
     }

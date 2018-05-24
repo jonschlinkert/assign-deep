@@ -324,3 +324,22 @@ describe('symbols', function() {
     });
   }
 });
+
+describe('performance', function() {
+  it('should not waste cycles assigning equal objects', function() {
+    var treeDepth = 18;
+    var moreTree = function(depthRemaining) {
+      var tree = {};
+      if (depthRemaining) {
+        tree.one = moreTree(depthRemaining - 1);
+        tree.two = moreTree(depthRemaining - 1);
+      }
+      return tree;
+    };
+    var treeRoot = moreTree(treeDepth);
+    var timeStart = new Date().getTime();
+    assign(treeRoot, treeRoot);
+    var timeEnd = new Date().getTime();
+    assert(timeEnd - timeStart < 5);
+  });
+});
