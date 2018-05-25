@@ -46,7 +46,7 @@ function extend(target, obj) {
         target[key] = assign(target[key] || {}, val);
       } else if (isArray(val)) {
         var array = [];
-        for (let i = 0; i < val.length; i++) {
+        for (var i = 0; i < val.length; i++) {
           if (isPrimitive(val[i])) {
             array.push(val[i]);
           } else {
