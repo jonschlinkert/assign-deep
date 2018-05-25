@@ -44,6 +44,18 @@ function extend(target, obj) {
           target[key] = val;
         }
         target[key] = assign(target[key] || {}, val);
+      } else if (isArray(val)) {
+        var array = [];
+        for (var i = 0; i < val.length; i++) {
+          if (isPrimitive(val[i])) {
+            array.push(val[i]);
+          } else {
+            array.push(assign({}, val[i]));
+          }
+        
+        }
+        target[key] = array;
+
       } else {
         target[key] = val;
       }
@@ -58,6 +70,13 @@ function extend(target, obj) {
 
 function isObject(obj) {
   return typeOf(obj) === 'object' || typeOf(obj) === 'function';
+}
+
+/**
+ * Returns true if the object is an array.
+ */
+function isArray(obj) {
+  return typeOf(obj) === 'array';
 }
 
 /**

@@ -130,7 +130,7 @@ describe('assign', function() {
     var two = {e: 'f', g: ['h']};
     assign(one, two);
     assert.deepEqual(one.g, ['h']);
-    assert.equal(one.g, two.g);
+    assert.deepEqual(one.g, two.g);
     assert.equal(typeof one, 'function');
   });
 
@@ -321,6 +321,29 @@ describe('symbols', function() {
       b[key] = 'xyz';
       var res = assign(a, b);
       assert.equal(res[key], 'xyz');
+    });
+
+    it('should deeply assign properties in an array:', function() {
+      var template = {
+        b: [
+          {
+  
+            a: {
+              a: 0
+            }
+          }
+        ]
+      };
+      var one = assign({}, template);
+      var two = assign({}, template);
+      one.b[0].a = {
+        b: 0
+      };
+      two.b[0].a = {
+        c: 0
+      };
+  
+      assert.deepEqual(one.b[0].a, {b: 0});
     });
   }
 });
