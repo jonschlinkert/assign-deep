@@ -1,6 +1,8 @@
 # assign-deep [![NPM version](https://img.shields.io/npm/v/assign-deep.svg?style=flat)](https://www.npmjs.com/package/assign-deep) [![NPM monthly downloads](https://img.shields.io/npm/dm/assign-deep.svg?style=flat)](https://npmjs.org/package/assign-deep) [![NPM total downloads](https://img.shields.io/npm/dt/assign-deep.svg?style=flat)](https://npmjs.org/package/assign-deep) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/assign-deep.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/assign-deep)
 
-> Deeply assign the enumerable properties and/or es6 Symbol properies of source objects to the target (first) object.
+> Deeply assign the values of all enumerable-own-properties and symbols from one or more source objects to a target object. Returns the target object.
+
+Please consider following this project's author, [Jon Schlinkert](https://github.com/jonschlinkert), and consider starring the project to show your :heart: and support.
 
 ## Install
 
@@ -10,42 +12,70 @@ Install with [npm](https://www.npmjs.com/):
 $ npm install --save assign-deep
 ```
 
+## Behavior
+
+* This follows the same behavior as [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign), and thus _does not_ deep clone values.
+* The first argument is the "target" object.
+* To shallow clone, pass an empty object as the first argument.
+* One or more additional ("source") objects may be passed.
+* When multiple objects are passed, properties in _later_ objects will overwrite same-named properties in _earlier_ objects. Thus, properties in the target object will be overwritten by same-named properties in other objects.
+* Only enumerable and own properties are copied.
+* String and Symbol properties are copied.
+* Sparse arguments are skipped, so this does not throw on `null` or `undefined` source values.
+* Like [Object.assign()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign), `[[Get]]` is used on source objects and `[[Set]]` is used on the target, so it will invoke getters and setters. Therefore it assigns properties versus just copying or defining new properties. _Note that this should not be used for merging new properties into a prototype if the merge sources contain getters and you do not want `[[Get]]` to be used on the getters. For copying property definitions and their enumerability into prototypes `Object.getOwnPropertyDescriptor()` and `Object.defineProperty()` should be used instead._
+
 ## Usage
 
 ```js
-var assign = require('assign-deep');
+const assign = require('assign-deep');
 
-var one = {b: {c: {d: 'e'}}};
-var two = {b: {c: {f: 'g', j: 'i'}}};
-var three = {foo: 'bar'};
+const config = {
+  admin: true,
+  author: {
+    name: { first: 'Joe' }
+  }
+};
 
-console.log(assign(one, two, three));
-//=> {b: {c: {d: 'e', f: 'g', j: 'i'}}, foo: 'bar'}
+const locals = {
+  admin: false,
+  author: {
+    name: { last: 'Smith' },
+    username: 'joesmith'
+  }
+};
+
+console.log(assign(config, locals));
+// {
+//   admin: false,
+//   author: {
+//     name: { first: 'Joe', last: 'Smith' },
+//     username: 'joesmith'
+//   }
+// }
 ```
 
 ## About
 
-### Related projects
-
-You might also be interested in these projects:
-
-* [assign-symbols](https://www.npmjs.com/package/assign-symbols): Assign the enumerable es6 Symbol properties from an object (or objects) to the first object… [more](https://github.com/jonschlinkert/assign-symbols) | [homepage](https://github.com/jonschlinkert/assign-symbols "Assign the enumerable es6 Symbol properties from an object (or objects) to the first object passed on the arguments. Can be used as a supplement to other extend, assign or merge methods as a polyfill for the Symbols part of the es6 Object.assign method.")
-* [extend-shallow](https://www.npmjs.com/package/extend-shallow): Extend an object with the properties of additional objects. node.js/javascript util. | [homepage](https://github.com/jonschlinkert/extend-shallow "Extend an object with the properties of additional objects. node.js/javascript util.")
-* [merge-deep](https://www.npmjs.com/package/merge-deep): Recursively merge values in a javascript object. | [homepage](https://github.com/jonschlinkert/merge-deep "Recursively merge values in a javascript object.")
-* [mixin-deep](https://www.npmjs.com/package/mixin-deep): Deeply mix the properties of objects into the first object. Like merge-deep, but doesn't clone. | [homepage](https://github.com/jonschlinkert/mixin-deep "Deeply mix the properties of objects into the first object. Like merge-deep, but doesn't clone.")
-
-### Contributing
+<details>
+<summary><strong>Contributing</strong></summary>
 
 Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
 
-### Contributors
+</details>
 
-| **Commits** | **Contributor** | 
-| --- | --- |
-| 23 | [jonschlinkert](https://github.com/jonschlinkert) |
-| 11 | [doowb](https://github.com/doowb) |
+<details>
+<summary><strong>Running Tests</strong></summary>
 
-### Building docs
+Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
+
+```sh
+$ npm install && npm test
+```
+
+</details>
+
+<details>
+<summary><strong>Building docs</strong></summary>
 
 _(This project's readme.md is generated by [verb](https://github.com/verbose/verb-generate-readme), please don't edit the readme directly. Any changes to the readme must be made in the [.verb.md](.verb.md) readme template.)_
 
@@ -55,26 +85,37 @@ To generate the readme, run the following command:
 $ npm install -g verbose/verb#dev verb-generate-readme && verb
 ```
 
-### Running tests
+</details>
 
-Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
+### Related projects
 
-```sh
-$ npm install && npm test
-```
+You might also be interested in these projects:
+
+* [assign-symbols](https://www.npmjs.com/package/assign-symbols): Assign the enumerable es6 Symbol properties from an object (or objects) to the first object… [more](https://github.com/jonschlinkert/assign-symbols) | [homepage](https://github.com/jonschlinkert/assign-symbols "Assign the enumerable es6 Symbol properties from an object (or objects) to the first object passed on the arguments. Can be used as a supplement to other extend, assign or merge methods as a polyfill for the Symbols part of the es6 Object.assign method.")
+* [extend-shallow](https://www.npmjs.com/package/extend-shallow): Extend an object with the properties of additional objects. node.js/javascript util. | [homepage](https://github.com/jonschlinkert/extend-shallow "Extend an object with the properties of additional objects. node.js/javascript util.")
+* [merge-deep](https://www.npmjs.com/package/merge-deep): Recursively merge values in a javascript object. | [homepage](https://github.com/jonschlinkert/merge-deep "Recursively merge values in a javascript object.")
+* [mixin-deep](https://www.npmjs.com/package/mixin-deep): Deeply mix the properties of objects into the first object. Like merge-deep, but doesn't clone… [more](https://github.com/jonschlinkert/mixin-deep) | [homepage](https://github.com/jonschlinkert/mixin-deep "Deeply mix the properties of objects into the first object. Like merge-deep, but doesn't clone. No dependencies.")
+
+### Contributors
+
+| **Commits** | **Contributor** | 
+| --- | --- |
+| 27 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 14 | [doowb](https://github.com/doowb) |
 
 ### Author
 
 **Jon Schlinkert**
 
-* [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
+* [LinkedIn Profile](https://linkedin.com/in/jonschlinkert)
+* [GitHub Profile](https://github.com/jonschlinkert)
+* [Twitter Profile](https://twitter.com/jonschlinkert)
 
 ### License
 
-Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
+Copyright © 2018, [Jon Schlinkert](https://github.com/jonschlinkert).
 Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on August 03, 2017._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on August 07, 2018._
