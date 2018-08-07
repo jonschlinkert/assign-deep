@@ -1,7 +1,7 @@
 {
   "name": "assign-deep",
   "description": "Deeply assign the values of all enumerable-own-properties and symbols from one or more source objects to a target object. Returns the target object.",
-  "version": "0.4.7",
+  "version": "1.0.0",
   "homepage": "https://github.com/jonschlinkert/assign-deep",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "contributors": [
