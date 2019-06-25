@@ -37,7 +37,7 @@ function extend(target, obj) {
   assignSymbols(target, obj);
 
   for (var key in obj) {
-    if (key !== '__proto__' && hasOwn(obj, key)) {
+    if (isValidKey(key) && hasOwn(obj, key)) {
       var val = obj[key];
       if (isObject(val)) {
         if (typeOf(target[key]) === 'undefined' && typeOf(val) === 'function') {
@@ -66,6 +66,14 @@ function isObject(obj) {
 
 function hasOwn(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
+}
+
+/**
+ * Returns true if the given `key` is a valid key that can be used for assigning properties.
+ */
+
+function isValidKey(key) {
+  return key !== '__proto__' && key !== 'constructor' && key !== 'prototype';
 }
 
 /**
