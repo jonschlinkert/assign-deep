@@ -48,7 +48,8 @@ const locals = {
   }
 };
 
-console.log(assign(config, locals));
+assign(config, locals)
+console.log(config);
 // {
 //   admin: false,
 //   author: {
